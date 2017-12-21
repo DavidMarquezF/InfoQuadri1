@@ -26,6 +26,8 @@ def load_patterns(prefix):
 def match(imag, patlst):
     """
     Returns the number the image is closest to
+    >>> match(("1", [[255,255,0,255],[255,0,0,255],[255,255,0,255],[255,255,0,255]]),[("1", [[0,0,0],[0,255,0],[0,255,0],[0,0,0]]), ("1", [[255,0,255],[0,0,255],[255,0,255],[255,0,255]])])
+    1
     """
     closestPattern = -1
     patternSim = 0
@@ -57,7 +59,7 @@ def simImage(imag, imag2):
     else:
         diference = abs(widthImg2-widthImg)
         if(widthImg > widthImg2):
-            return simBiggerImage(imag,imag2, diference)
+            return simBiggerImage(imag2,imag, diference)
         elif(widthImg2 > widthImg):
             return simBiggerImage(imag, imag2, diference)
 
