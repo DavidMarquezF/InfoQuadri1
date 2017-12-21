@@ -1,5 +1,10 @@
 import imgio, img
 def getNames(prefix):
+    """
+    Retorna una llista de noms a partir d'un prefix
+    >>> getNames("patro")
+    ['patro_0.jpeg', 'patro_1.jpeg', 'patro_2.jpeg', 'patro_3.jpeg', 'patro_4.jpeg', 'patro_5.jpeg', 'patro_6.jpeg', 'patro_7.jpeg', 'patro_8.jpeg', 'patro_9.jpeg']
+    """
     i = 0
     names=[]
     while(i<=9):
@@ -9,6 +14,9 @@ def getNames(prefix):
     return names
 
 def load_patterns(prefix):
+    """
+    Et retorna les imatges de tots els patrons (imatges del 0 al 9)
+    """
     names = getNames(prefix)
     images = []
     for name in names:
@@ -16,6 +24,9 @@ def load_patterns(prefix):
     return  images
 
 def match(imag, patlst):
+    """
+    Returns the number the image is closest to
+    """
     #TODO: La imatge ha de ser la mateixa altura. Es fa aqui o es fa quan mho passen?
     #TODO: Em passen la imatge en blanc i negre?
 
@@ -33,6 +44,15 @@ def match(imag, patlst):
 
 
 def simImage(imag, imag2):
+    """
+    Retorna la similtud entre dos imatges (un nombre de pixels)
+    >>> simImage(('1', [[255,0,255],[255,0,255],[255,0,255]]),('1',[[255,255,0,255,255,255],[255,0,255,255,255,255],[0,255,255,255,255,255]]))
+    6
+    >>> simImage(('1', [[255, 0], [255, 255], [255, 255]]),('1', [[255, 0], [255, 0], [255, 255]]))
+    5
+    >>> simImage(('1', [[255, 0], [255, 255], [255, 255]]),('RGB', [[(255,255,255), (0,0,0)], [(255,255,255), (0,0,0)], [(255,255,255), (255,255,255)]]))
+    5
+    """
     widthImg = img.get_w(imag)
     widthImg2 = img.get_w(imag2)
     if(widthImg == widthImg2):
@@ -40,15 +60,17 @@ def simImage(imag, imag2):
     else:
         diference = abs(widthImg2-widthImg)
         if(widthImg > widthImg2):
-            return simBiggerImage(imag,imag2, widthImg2, diference)
+            return simBiggerImage(imag,imag2, diference)
         elif(widthImg2 > widthImg):
-            return simBiggerImage(imag, imag2, widthImg, diference)
+            return simBiggerImage(imag, imag2, diference)
 
-def simBiggerImage(smallImag, bigImag, smallestWidth, difference):
+def simBiggerImage(smallImag, bigImag, difference):
     """
     En cas que una imatge sigui mes grossa que l'altre es gestiona la semblanca aqui
-    >>> simBiggerImage(('1', [[255,0,255],[255,0,255],[255,0,255]]),('1',[[255,255,0,255,255,255],[255,0,255,255,255,255],[0,255,255,255,255,255]]), 3, 3)
+    >>> simBiggerImage(('1', [[255,0,255],[255,0,255],[255,0,255]]),('1',[[255,255,0,255,255,255],[255,0,255,255,255,255],[0,255,255,255,255,255]]), 3)
     6
+    >>> simBiggerImage(('1', [[255,0,255],[255,0,255],[255,0,0]]),('1',[[255,255,0,255,255,255],[255,0,255,255,255,255],[0,255,255,255,255,255]]), 3)
+    5
     """
     biggestSim = 0
     for i in range(difference + 1):
