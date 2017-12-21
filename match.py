@@ -27,9 +27,6 @@ def match(imag, patlst):
     """
     Returns the number the image is closest to
     """
-    #TODO: La imatge ha de ser la mateixa altura. Es fa aqui o es fa quan mho passen?
-    #TODO: Em passen la imatge en blanc i negre?
-
     closestPattern = -1
     patternSim = 0
     for pat in range(len(patlst)):
