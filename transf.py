@@ -84,7 +84,6 @@ def scale(imtg,h):
     >>> scale(("RGB", [[(0, 0, 0), (255, 255, 255), (255, 0, 0), (255, 0, 0)], [(0, 0, 0), (255, 255, 255), (255, 0, 0), (255, 0, 0)], [(255, 255, 255), (0, 255, 0),(255, 255, 255), (255, 0, 0)], [(0, 0, 255), (255, 255, 255), (255, 255, 255), (255, 0, 0)]]),2)
     ('1', [[(0, 0, 0), (255, 0, 0)], [(0, 0, 255), (255, 0, 0)]])
     """
-    print imtg
     imatge=imtg[1]
     H=img.get_h(imtg)
     W=img.get_w(imtg)
@@ -103,5 +102,7 @@ def scale(imtg,h):
         af=a*f
         for b in range(0,w):
             bf=b*(v)
+            if bf==len(imatge[0]):
+                break                #MIRAR AIXÒ
             iscale[a][b]=imatge[af][bf]
     return ('1',iscale)
