@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-import img, Image
+import img
 
 def read_rgb(nomf):
     """
