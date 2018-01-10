@@ -1,23 +1,24 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import img
 
-def vtrim(img):
+def vtrim(imtg):
     """
     Retorna la imatge resultant de retallar-la verticalent. Si la imatge és blanca, retorna una imatge nula.
     >>> vtrim(('1',[[255,255,0],[255,0,255],[0,255,255]]))
     ('1', [[255, 255, 0], [255, 0, 255], [0, 255, 255]])
     >>> vtrim(('1',[[255,255,255],[255,255,255],[255,255,255]]))
-    'nula'
+    ('NULL', None)
     >>> vtrim(('1',[[255,255,255],[255,0,255],[0,255,255]]))
     ('1', [[255, 0, 255], [0, 255, 255]])
     """
-    if img[0]!='1':
+    if imtg[0]!='1':
         raise Exception("La imatge no està en blanc i negre")
-    imatge=img[1]
+    imatge=imtg[1]
     imgN=[]
     r=-1
     if imatge==[[255]*len(imatge[-1])]*len(imatge):
-        return "nula"
+        return img.null()
     for i,j in enumerate(imatge):
         if j==[255]*len(j):
             r=i+1
@@ -28,23 +29,23 @@ def vtrim(img):
         imgN=imatge
     return ('1',imgN)
 
-def htrim(img):
+def htrim(imtg):
     """
     Retorna la imatge resultant de retallar-la horitzontalment. SI la imatge és blanca, retorna una imatge nula.
     >>> htrim(('1',[[255,255,0],[255,0,255],[0,255,255]]))
     ('1', [[255, 255, 0], [255, 0, 255], [0, 255, 255]])
     >>> htrim(('1',[[255,255,255],[255,255,255],[255,255,255]]))
-    'nula'
+    ('NULL', None)
     >>> htrim(('1',[[255,255,255],[255,0,255],[0,255,255]]))
     ('1', [[255, 255], [255, 0], [0, 255]])
     """
-    if img[0]!='1':
+    if imtg[0]!='1':
         raise Exception("La imatge no està en blanc i negre")
-    imatge=img[1]
+    imatge=imtg[1]
     imgN=[]
     r=-1
     if imatge==[[255]*len(imatge[-1])]*len(imatge):
-        return "nula"
+        return img.null()
     for j in range(0,len(imatge)):
         col=[]
         for i in range(0,len(imatge[-1])):
