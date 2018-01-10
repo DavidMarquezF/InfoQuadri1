@@ -5,6 +5,7 @@ def getNames(prefix):
     >>> getNames("patro")
     ['patro_0.jpeg', 'patro_1.jpeg', 'patro_2.jpeg', 'patro_3.jpeg', 'patro_4.jpeg', 'patro_5.jpeg', 'patro_6.jpeg', 'patro_7.jpeg', 'patro_8.jpeg', 'patro_9.jpeg']
     """
+    
     i = 0
     names=[]
     while(i<=9):
