@@ -15,7 +15,7 @@ def vtrim(imtg):
     ('1', [[0, 0, 0]])
     """
     if imtg[0]!='1':
-        raise Exception("La imatge no està en blanc i negre")
+        raise Exception("La imatge no està en blanc i negre.")
     imatge=imtg[1]
     imgN=[]
     pFila=-1
