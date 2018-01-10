@@ -12,20 +12,29 @@ def vtrim(imtg):
     >>> vtrim(('1',[[255,255,255],[255,0,255],[0,255,255]]))
     ('1', [[255, 0, 255], [0, 255, 255]])
     >>> vtrim(('1',[[255,255,255],[0,0,0],[255,255,255]]))
+    ('1', [[0, 0, 0]])
     """
     if imtg[0]!='1':
         raise Exception("La imatge no està en blanc i negre")
     imatge=imtg[1]
     imgN=[]
-    r=-1
+    pFila=-1
+    uFila=-1
     if imatge==[[255]*len(imatge[-1])]*len(imatge):
         return img.null()
     for i,j in enumerate(imatge):
-        if j==[255]*len(j):
-            r=i+1
-    if r!=-1:
-        for i in range(r,len(imatge)):
+        if j!=[255]*len(j):
+            pFila=i
+            break
+    if pFila!=-1:
+        for i in range(pFila,len(imatge)):
             imgN+=[imatge[i]]
+    for i,j in enumerate(imatge[::-1]):
+        if j!=[255]*len(j):
+            uFila=i
+            break
+    if uFila!=-1:
+        imgN=imgN[:len(imgN)-uFila]
     else:
         imgN=imatge
     return ('1',imgN)
