@@ -11,6 +11,7 @@ def vtrim(imtg):
     ('NULL', None)
     >>> vtrim(('1',[[255,255,255],[255,0,255],[0,255,255]]))
     ('1', [[255, 0, 255], [0, 255, 255]])
+    >>> vtrim(('1',[[255,255,255],[0,0,0],[255,255,255]]))
     """
     if imtg[0]!='1':
         raise Exception("La imatge no està en blanc i negre")
@@ -62,7 +63,7 @@ def htrim(imtg):
         imgN=imatge
     return ('1',imgN)
 
-def scale(img,h):
+def scale(imtg,h):
     """
     Escala homogèniament img fins que la seva alçada és h. S'usarà principalment per reduir la mida d'una imatge.
     >>> scale(("RGB", [[(255, 255, 255), (255, 255, 255), (255, 255, 255)], [(255, 255, 255),(255, 255, 255), (255, 255, 255)], [(255, 255, 255), (255, 255, 255), (255, 255, 255)]]),2)
@@ -74,9 +75,10 @@ def scale(img,h):
     >>> scale(("RGB", [[(0, 0, 0), (255, 255, 255), (255, 0, 0), (255, 0, 0)], [(0, 0, 0), (255, 255, 255), (255, 0, 0), (255, 0, 0)], [(255, 255, 255), (0, 255, 0),(255, 255, 255), (255, 0, 0)], [(0, 0, 255), (255, 255, 255), (255, 255, 255), (255, 0, 0)]]),2)
     ('1', [[(0, 0, 0), (255, 0, 0)], [(0, 0, 255), (255, 0, 0)]])
     """
-    imatge=img[1]
-    H=len(imatge)
-    W=len(imatge[0])
+    print imtg
+    imatge=imtg[1]
+    H=img.get_h(imtg)
+    W=img.get_w(imtg)
     fh=(H/(h+.0))+0.5
     w=h*W/H
     fw=(W/(w+.0))+0.5

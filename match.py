@@ -5,7 +5,7 @@ def getNames(prefix):
     >>> getNames("patro")
     ['patro_0.jpeg', 'patro_1.jpeg', 'patro_2.jpeg', 'patro_3.jpeg', 'patro_4.jpeg', 'patro_5.jpeg', 'patro_6.jpeg', 'patro_7.jpeg', 'patro_8.jpeg', 'patro_9.jpeg']
     """
-    
+
     i = 0
     names=[]
     while(i<=9):
@@ -14,14 +14,16 @@ def getNames(prefix):
         i+=1
     return names
 
-def load_patterns(prefix):
+def load_patterns(carpeta):
     """
     Et retorna les imatges de tots els patrons (imatges del 0 al 9)
     """
+    prefix = carpeta[carpeta.rfind("/") + 1:]
+    carpeta = carpeta[:carpeta.rfind("/") + 1]
     names = getNames(prefix)
     images = []
     for name in names:
-        images.append(imgio.read_rgb(name))
+        images.append(imgio.read_rgb(carpeta+name))
     return  images
 
 def match(imag, patlst):
