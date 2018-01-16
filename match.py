@@ -34,14 +34,13 @@ def match(imag, patlst):
     """
     closestPattern = -1
     patternSim = 0
+
     for pat in range(len(patlst)):
         patSim = simImage(imag, patlst[pat])
 
         if(patSim > patternSim):
-            print patSim, pat
             patternSim = patSim
             closestPattern = pat
-    print"-----"
     return closestPattern
 
 

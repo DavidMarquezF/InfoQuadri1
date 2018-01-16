@@ -120,7 +120,6 @@ def scale(imtg, h):
     imatge = imtg[1]
     H = img.get_h(imtg)
     W = img.get_w(imtg)
-
     w = h * W / H
     fh=H/(h+.0)
     iscale = []

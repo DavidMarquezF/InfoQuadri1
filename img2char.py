@@ -1,20 +1,18 @@
 import sys, discret, img, imgio,match,split,transf
 
-def getPatterns(patrons):
+def getPatr(patrons):
     patronsImg = match.load_patterns(patrons)
     for i, patro in enumerate(patronsImg):
         patronsImg[i] = discret.rgb_to_bn(patro)
-
-        return  patronsImg
-
+    return patronsImg
 
 if(__name__ =="__main__"):
     s = sys.argv[1:]
     patrons = s[0]
     matricula = s[1]
 
-    patronsImg = getPatterns(patrons)
 
+    patronsImg = getPatr(patrons)
     matriculaImg = imgio.read_rgb(matricula)
     matriculaImg = discret.rgb_to_bn(matriculaImg)
     matriculaImg = transf.vtrim(matriculaImg)
