@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import  PIL
+from PIL import Image
 import img
 
 def vtrim(imtg):
@@ -14,6 +16,7 @@ def vtrim(imtg):
     >>> vtrim(('1',[[255,255,255],[0,0,0],[255,255,255]]))
     ('1', [[0, 0, 0]])
     """
+
     if imtg[0]!='1':
         raise Exception("La imatge no està en blanc i negre.")
     imatge=imtg[1]
@@ -72,7 +75,8 @@ def htrim(imtg):
         imgN=imatge
     return ('1',imgN)
 
-def scale(imtg,h):
+
+def scale(imtg, h):
     """
     Escala homogèniament img fins que la seva alçada és h. S'usarà principalment per reduir la mida d'una imatge.
     >>> scale(("RGB", [[(255, 255, 255), (255, 255, 255), (255, 255, 255)], [(255, 255, 255),(255, 255, 255), (255, 255, 255)], [(255, 255, 255), (255, 255, 255), (255, 255, 255)]]),2)
@@ -83,26 +87,30 @@ def scale(imtg,h):
     ('1', [[(0, 0, 0), (255, 0, 0)], [(0, 0, 255), (255, 0, 0)]])
     >>> scale(("RGB", [[(0, 0, 0), (255, 255, 255), (255, 0, 0), (255, 0, 0)], [(0, 0, 0), (255, 255, 255), (255, 0, 0), (255, 0, 0)], [(255, 255, 255), (0, 255, 0),(255, 255, 255), (255, 0, 0)], [(0, 0, 255), (255, 255, 255), (255, 255, 255), (255, 0, 0)]]),2)
     ('1', [[(0, 0, 0), (255, 0, 0)], [(0, 0, 255), (255, 0, 0)]])
+    >>> scale(("RGB", [[1,2,3,4],[5,6,7,8],[1,2,3,4]]),2)
+    ('1', [[1, 4], [1, 4]])
+    >>> scale (("RGB",[[1,2,3],[4,5,6],[7,8,9],[1,2,3]]),2)
+    ('1', [[2], [2]])
+    >>> scale(("RGB",[[1,2,3],[4,5,6],[7,8,9]]),2)
+    ('1', [[1, 3], [7, 9]])
     """
-    imatge=imtg[1]
-    H=img.get_h(imtg)
-    W=img.get_w(imtg)
-    fh=(H/(h+.0))+0.5
-    w=h*W/H
-    fw=(W/(w+.0))+0.5
-    iscale=[]
-    for i in range(0,h):
-        fila=[]
-        for j in range(0,w):
-            fila+=[0]
-        iscale+=[fila]
-    f=int(round(fh,0))
-    v = int(round((fw), 0))
-    for a in range(0,h):
-        af=a*f
-        for b in range(0,w):
-            bf=b*(v)
-            if bf==len(imatge[0]):
-                break                #MIRAR AIXÒ
-            iscale[a][b]=imatge[af][bf]
+    imatge = imtg[1]
+    H = img.get_h(imtg)
+    W = img.get_w(imtg)
+    w = h * W / H
+    fh=H/(h+.0)
+    iscale = []
+
+    for i in range(0, h):
+        fila = []
+        for j in range(0, w):
+            fila += [0]
+        iscale += [fila]
+
+    for fila in range(h):
+        for columna in range(w):
+            iscale[fila][columna]=imatge[int(round(fila*fh))][int(round(columna*fh))]
     return ('1',iscale)
+
+
+

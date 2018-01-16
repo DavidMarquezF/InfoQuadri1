@@ -12,14 +12,15 @@ if(__name__ =="__main__"):
     matriculaImg = imgio.read_rgb(matricula)
     matriculaImg = discret.rgb_to_bn(matriculaImg)
     matriculaImg = transf.vtrim(matriculaImg)
-    print matriculaImg
     hPatrons = img.get_h(patronsImg[0])
     matriculaImg = transf.scale(matriculaImg, hPatrons)
-
+    imgio.show(matriculaImg)
     matriculaNumbers = []
     matriculaSplit = matriculaImg
     while True:
         splt = split.split_digit(matriculaSplit)
+        if(splt == img.null()):
+            break
         matriculaMatch = match.match(splt[0], patronsImg)
         matriculaNumbers.append(matriculaMatch)
         matriculaSplit = splt[1]
