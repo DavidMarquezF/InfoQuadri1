@@ -51,30 +51,53 @@ def htrim(imtg):
     ('NULL', None)
     >>> htrim(('1',[[255,255,255],[255,0,255],[0,255,255]]))
     ('1', [[255, 255], [255, 0], [0, 255]])
+    >>> htrim(('1',[[255,255,255,255],[255,255,0,255],[255,255,0,255]]))
+    ('1', [[255], [0], [0]])
     """
-    if imtg[0]!='1':
+    if imtg[0][0]!='1':
+        
         raise Exception("La imatge no està en blanc i negre")
     imatge=imtg[1]
     imgN=[]
-    r=-1
+    pColumna=-1
+    uColumna=-1
     if imatge==[[255]*len(imatge[-1])]*len(imatge):
         return img.null()
-    for j in range(0,len(imatge)):
-        col=[]
-        for i in range(0,len(imatge[-1])):
-            col+=[imatge[i][j]]
-        if col==[255]*len(col):
-            r=j
-    if r!=-1:
+    pColumna=retallah(imatge,1)
+    if pColumna!=-1:
         for i in range(0,len(imatge)):
-            col=[]
-            for j in range(0,r):
-                col+=[imatge[i][j]]
-            imgN+=[col]
+            fila=imatge[i]
+            imgN+=[fila[pColumna:]]
     else:
-        imgN=imatge
+        imgN+=imatge
+    uColumna=retallah(imgN,-1)
+    if uColumna!=-1:
+        for i in range(0,len(imgN)):
+            fila=imgN[i]
+            imgN[i]=fila[:uColumna+1]
     return ('1',imgN)
 
+
+def retallah(imatge,p):
+    Columna=-1
+    t=False
+    if p==1:
+        a=0
+        b=len(imatge[0])
+    else:
+        a=(len(imatge[0])-1)
+        b=-1
+    for col in range(a,b,p):
+        columna=[]
+        if t==True:                      
+            break
+        for fila in range(len(imatge)):
+            columna+=[imatge[fila][col]]
+        if columna!=[255]*len(imatge):
+            Columna=col
+            t=True
+
+    return(Columna)
 
 def scale(imtg, h):
     """

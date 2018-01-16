@@ -21,7 +21,8 @@ if(__name__ =="__main__"):
         splt = split.split_digit(matriculaSplit)
         if(splt == img.null()):
             break
-        matriculaMatch = match.match(splt[0], patronsImg)
+        numSplt = transf.htrim(splt[0])
+        matriculaMatch = match.match(numSplt, patronsImg)
         matriculaNumbers.append(matriculaMatch)
         matriculaSplit = splt[1]
         if(len(matriculaSplit[1]) == 0):
