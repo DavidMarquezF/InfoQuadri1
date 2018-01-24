@@ -1,9 +1,17 @@
 from getpass import getpass
-import img2char, os.path
+import img2char, os.path, sys
 
 
 Usuari = "Agent1"
 Password = "policia"
+
+#--------------------Funcionalitat general
+
+def menu():
+    print "[1] Afegir multa"
+    print "[2] Eliminar multa"
+    print "[3] Mostrar multes"
+    print "[4] Exit"
 
 def checkIfInt(number):
     """
@@ -22,18 +30,32 @@ def checkIfInt(number):
     except ValueError:  #Si dona error retorna False
         return False
 
+def askNumberOption(question, numbers):
+    """
+    Demana una pregunta (parametre 1) on es poden triar opcions del 1 al parametre 2 (numbers)
+    i retorna el que l'usuari ha triat
+    """
+    while(True):
+        answerUser = raw_input(question)
+        while(not checkIfInt(answerUser)):
+            answerUser = raw_input("Write a valid answer: ")
+        answerUser = int(answerUser)
+        if(answerUser > 0 and answerUser <= numbers):
+            return answerUser
+
+#------------------Consulta Multes
 
 def consultarMultes(fitxer):
     """
     Mostra multes per pantalla
     """
     f=open(fitxer)
-    linia=f.readline()
+
     comptador=0
-    while linia!="":
+    for linia in f:
         c=linia.split("/")
         comptador+=1
-        print comptador,". num matricula->",c[0],"diners a pagar->",c[1]
+        print str(comptador) +". Matricula: ",c[0],"    Multa: ",c[1]
     f.close()
 
 def logIn():
@@ -103,6 +125,36 @@ def afegirMulta(patr, dic):
     return dic
 
 
+#------------------------Elimina Multa
 
 
 
+
+
+#-----------------------Gestiona opcions
+
+def selectOption(op, patr,multesFile):
+    if(op == 1):
+        dic={}#---------------------------------
+        afegirMulta(patr, dic)
+        print "Multa afegida exitosament!\n\n"
+    elif(op == 2):
+        pass
+    elif(op == 3):
+        consultarMultes(multesFile)
+        raw_input("Apreta Enter per tornar al menu...")
+    elif(op == 4):
+        exit()
+
+if(__name__ == "__main__"):
+    s = sys.argv[1:]
+    patrons = s[0]
+    multesFile = s[1]
+    if (not os.path.isfile(multesFile)):
+        print multesFile + " no es un fitxer i per tant no es pot seguir fent operacions"
+        exit()
+
+    while True:
+        menu()
+
+        selectOption(askNumberOption("Seleccioni una opcio: ", 4), patrons, multesFile)
