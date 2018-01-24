@@ -100,8 +100,12 @@ def diccionari(fitxer):
     d={}
     f=open(fitxer,"r")
     for linia in f:
-        linia=linia[:-1]
-        g=linia.split("/")
+        x=linia.find("\n")
+        l=linia[:x]
+        if x<0:
+            l=linia
+
+        g=l.split("/")
         d[g[0]]=int(g[1])
     return d
 
@@ -113,7 +117,7 @@ def askFile():
     Demana el fitxer
     """
     while True:
-        f = raw_input("Introdueixi el fitxer amb la imatge: ")
+        f = raw_input("Introdueixi el fitxer amb la matricula: ")
         if(os.path.isfile(f)):
             return f
         else:
