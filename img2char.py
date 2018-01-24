@@ -41,21 +41,15 @@ def hasLettersInMat():
     while True:
         lettersInMat = raw_input("La matricula te lletres?(Y/N) ")
         if(lettersInMat == "y" or lettersInMat == "Y"):
-            lettersInMat = True
-            break
+             return True
         elif(lettersInMat == "n" or lettersInMat == "N"):
-            lettersInMat = False
-            break
+            return False
         print lettersInMat + " no es una resposta valida."
 
-
-if(__name__ =="__main__"):
-    s = sys.argv[1:]
-    patrons = s[0]
-    matricula = s[1]
+def nombreMatricula(patrons, matricula):
     lettersInMat = hasLettersInMat()
 
-    if(lettersInMat):
+    if (lettersInMat):
         print "Les matricules amb lletres solen tenir 4 nombres"
 
     patronsImg = getPatr(patrons)
@@ -63,8 +57,18 @@ if(__name__ =="__main__"):
 
     matriculaImg = getMatr(matricula, hPatrons)
 
-    matriculaNumberList = getMatriculaNumbers(matriculaImg,patronsImg, lettersInMat)
-    matriculaNumberList = list(map(str, matriculaNumberList))   #Convertir a string
-    print "La matricula identificada es " + "".join(matriculaNumberList)
+    matriculaNumberList = getMatriculaNumbers(matriculaImg, patronsImg, lettersInMat)
+    matriculaNumberList = list(map(str, matriculaNumberList))  # Convertir a string
+    matStr = "".join(matriculaNumberList)
+    print "La matricula identificada es " + matStr
+    return matStr
+
+if(__name__ =="__main__"):
+    s = sys.argv[1:]
+    patrons = s[0]
+    matricula = s[1]
+
+    nombreMatricula(patrons, matricula)
+
 
 
