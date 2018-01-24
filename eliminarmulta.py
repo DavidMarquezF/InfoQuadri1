@@ -15,14 +15,6 @@ def diccionari(fitxer):
         d[g[0]]=int(g[1])
     return d
 
-def chekejaMatricula(matricula):
-    """
-    retorna True si la matricula existeix, sino retorna False
-    """
-    d=diccionari("multes.txt")
-    if d.has_key(matricula):
-        return True
-    return False
 
 def demanaMatricula():
     """
