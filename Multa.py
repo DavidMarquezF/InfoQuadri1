@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding:utf-8 -*-
 from getpass import getpass
 import img2char, os.path, sys
 
@@ -88,6 +90,19 @@ def writeToFile(file, listTxt):
     f.writelines(listTxt)
     f.close()
 
+def diccionari(fitxer):
+    """
+    Retorna un diccionari on l'index es la matricula
+    """
+    d={}
+    f=open(fitxer,"r")
+    for linia in f:
+        linia=linia[:-1]
+        g=linia.split("/")
+        d[g[0]]=int(g[1])
+    return d
+
+
 
 #---------------------Afegir Multa
 def askFile():
@@ -95,7 +110,7 @@ def askFile():
     Demana el fitxer
     """
     while True:
-        f = raw_input("Introdueixi el fitxer amb la imatge")
+        f = raw_input("Introdueixi el fitxer amb la imatge: ")
         if(os.path.isfile(f)):
             return f
         else:
@@ -106,7 +121,7 @@ def askFee():
     Demana la multa
     """
     while True:
-        fee = raw_input("Introdueixi la multa (en euros)")
+        fee = raw_input("Introdueixi la multa (en euros): ")
         if(checkIfInt(fee)):
             print "Multa de " + fee + " sera afegida a la matricula"
             return int(fee)
@@ -127,7 +142,28 @@ def afegirMulta(patr, dic):
 
 #------------------------Elimina Multa
 
+def demanaMatricula():
+    """
+    Retorna la matricula que s'ha demanat, iteria si no és correcte
+    """
+    while True:
+        matricula = raw_input("Introdueix matricula: ")
+        if(checkIfInt(matricula)):
+            return matricula
+        else:
+            print "Matricula incorrecte."
 
+def eliminaMatricula(fitxer):
+    """
+    Retorna el diccionari del fitxer sense la matricula que es vol eliminar
+    """
+    matricula=demanaMatricula()
+    d=diccionari(fitxer)
+    if d.has_key(matricula):
+        del d[matricula]
+    else:
+        print "Matricula no registrada."
+    return d
 
 
 
@@ -135,11 +171,14 @@ def afegirMulta(patr, dic):
 
 def selectOption(op, patr,multesFile):
     if(op == 1):
-        dic={}#---------------------------------
-        afegirMulta(patr, dic)
+        dic = diccionari(multesFile)
+        af = afegirMulta(patr, dic)
+        writeToFile(multesFile, dicToString(af))
         print "Multa afegida exitosament!\n\n"
     elif(op == 2):
-        pass
+        el = eliminaMatricula(multesFile)
+        writeToFile(multesFile, dicToString(el))
+        print "Multa eliminada exitosament!\n\n"
     elif(op == 3):
         consultarMultes(multesFile)
         raw_input("Apreta Enter per tornar al menu...")
