@@ -1,7 +1,22 @@
+def checkIfInt(number):
+    """
+    Chequeja si la string que es passa es un int
+    >>> checkIfInt('10')
+    True
+    >>> checkIfInt('1A')
+    False
+    >>> checkIfInt('asd')
+    False
+    """
+
+    try:                #Prova de fer aixo
+        int(number)
+        return True
+    except ValueError:  #Si dona error retorna False
+        return False
 
 
-
-def consultarMultes(fitxer)
+def consultarMultes(fitxer):
     f=open(fitxer)
     linia=f.readline()
     comptador=0
