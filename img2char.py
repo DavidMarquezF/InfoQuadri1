@@ -27,7 +27,7 @@ def getMatriculaNumbers(matriculaImg, patronsImg, hasLetters = False):
                 break
 
         splt = split.split_digit(matriculaSplit)
-        if (splt == img.null()):
+        if (img.is_null(splt)):
             break
         numSplt = transf.htrim(splt[0])
         matriculaMatch = match.match(numSplt, patronsImg)
