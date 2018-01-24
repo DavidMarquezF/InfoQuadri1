@@ -9,6 +9,17 @@ Password = "policia"
 
 #--------------------Funcionalitat general
 
+def displayTitle(title):
+    """
+    Escriu un títol
+    """
+    print
+    lengthTitle = len(title) + 8
+    print ("\t" + "*"*lengthTitle)
+    print ("\t" + "*** " + title + " ***")
+    print ("\t" + "*"*lengthTitle)
+    print
+
 def menu():
     print "[1] Afegir multa"
     print "[2] Eliminar multa"
@@ -65,13 +76,15 @@ def logIn():
     """
     Log in pel policia
     """
-    usuari=input("Entri usuari: ")
+    displayTitle("LOGIN")
+    usuari=raw_input("Entri usuari: ")
     password=getpass("Entri contrasenya: ")
     while usuari!=Usuari and password !=Password:
         print "Usuari o contrasenya no correctes"
-        usuari=input("Entri usuari: ")
+        usuari=raw_input("Entri usuari: ")
         password=getpass("Entri contrasenya: ")
 
+    print "Login correcte! \n"
     return True
 
 #---------------------Funcions generals
@@ -179,20 +192,26 @@ def eliminaMatricula(fitxer):
 
 def selectOption(op, patr,multesFile):
     if(op == 1):
+        displayTitle("AFEGIR MULTA")
         dic = diccionari(multesFile)
         af = afegirMulta(patr, dic)
         writeToFile(multesFile, dicToString(af))
         print "Multa afegida exitosament!\n"
     elif(op == 2):
+        displayTitle("ELIMINAR MULTA")
+        consultarMultes(multesFile)
+        print
         el = eliminaMatricula(multesFile)
         writeToFile(multesFile, dicToString(el))
     elif(op == 3):
+        displayTitle("CONSULTAR MULTES")
         consultarMultes(multesFile)
         raw_input("Apreta Enter per tornar al menu...")
     elif(op == 4):
         exit()
 
 if(__name__ == "__main__"):
+    logIn()
     s = sys.argv[1:]
     patrons = s[0]
     multesFile = s[1]
