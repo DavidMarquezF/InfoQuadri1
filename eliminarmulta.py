@@ -20,9 +20,7 @@ def demanaMatricula():
     """
     retorna la matricula que s'ha demanat, iteria si no és correcte
     """
-
-    t=False
-    while  not t:
+    while  True:
         matricula = raw_input("Introdueix matricula:")
         for i in matricula:
             if i not in string.digits:
@@ -30,7 +28,6 @@ def demanaMatricula():
                 break
         else:
             return matricula
-            t=True
 
 
 def eliminaMatricula(fitxer):
