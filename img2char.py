@@ -36,12 +36,7 @@ def getMatriculaNumbers(matriculaImg, patronsImg, hasLetters = False):
         if (len(matriculaSplit[1]) == 0):
             break
     return matriculaNumbers
-def checkIfInt(number):
-    try:
-        int(number)
-        return True
-    except ValueError:
-        return False
+
 
 if(__name__ =="__main__"):
     s = sys.argv[1:]
