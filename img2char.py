@@ -63,6 +63,8 @@ if(__name__ =="__main__"):
 
     matriculaImg = getMatr(matricula, hPatrons)
 
-    print getMatriculaNumbers(matriculaImg,patronsImg, lettersInMat)
+    matriculaNumberList = getMatriculaNumbers(matriculaImg,patronsImg, lettersInMat)
+    matriculaNumberList = list(map(str, matriculaNumberList))   #Convertir a string
+    print "La matricula identificada es " + "".join(matriculaNumberList)
 
 
