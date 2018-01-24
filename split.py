@@ -12,7 +12,7 @@ def split_digit(imag):
     if(start == None):
         return img.null()
     finish = findWhite(matrix, start)
-    croppedNumber = img.subimg(imag,start, 0, finish, len(matrix))
+    croppedNumber = img.subimg(imag,start, 0, finish -start, len(matrix))  #subimg(img, ow, oh, w, h)
     endCropped = img.subimg(imag, finish+1, 0, len(matrix[0]) - finish+1, len(matrix))
     return (croppedNumber, endCropped)
 
