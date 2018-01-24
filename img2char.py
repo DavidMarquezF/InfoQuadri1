@@ -1,12 +1,18 @@
 import sys, discret, img, imgio,match,split,transf
 
 def getPatr(patrons):
+    """
+    Obte tots els patrons en blanc i negre
+    """
     patronsImg = match.load_patterns(patrons)
     for i, patro in enumerate(patronsImg):
         patronsImg[i] = discret.rgb_to_bn(patro)
     return patronsImg
 
 def getMatr(matricula, hPatrons):
+    """
+    Obte la matricula, la passa a blanc i negre, la retalla verticalment i l'escala
+    """
     matriculaImg = imgio.read_rgb(matricula)
     matriculaImg = discret.rgb_to_bn(matriculaImg)
     matriculaImg = transf.vtrim(matriculaImg)
@@ -16,6 +22,9 @@ def getMatr(matricula, hPatrons):
 
 
 def getMatriculaNumbers(matriculaImg, patronsImg, hasLetters = False):
+    """
+    Retorna una llista amb cada nombre de la matricula (fa split, match,etc.)
+    """
     matriculaNumbers = []
     matriculaSplit = matriculaImg
 
@@ -38,6 +47,9 @@ def getMatriculaNumbers(matriculaImg, patronsImg, hasLetters = False):
     return matriculaNumbers
 
 def hasLettersInMat():
+    """
+    Pregunta si la matricula te lletres, en cas afirmatiu, agafa 4 nombres
+    """
     while True:
         lettersInMat = raw_input("La matricula te lletres?(Y/N) ")
         if(lettersInMat == "y" or lettersInMat == "Y"):
@@ -47,6 +59,9 @@ def hasLettersInMat():
         print lettersInMat + " no es una resposta valida."
 
 def nombreMatricula(patrons, matricula):
+    """
+    Retorna una string que conte la matricula identificada
+    """
     lettersInMat = hasLettersInMat()
 
     if (lettersInMat):
