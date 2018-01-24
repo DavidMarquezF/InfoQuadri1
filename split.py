@@ -18,6 +18,11 @@ def split_digit(imag):
 
 
 def findBlack(matrix):
+    """
+    Troba una columna negre
+    >>> findBlack([[255,0,0],[255,255,0]])
+    1
+    """
     for col in range(len(matrix[0])):
         for row in range(len(matrix)):
            if(matrix[row][col] != 255):
@@ -25,6 +30,11 @@ def findBlack(matrix):
     return None #No hauria d'arribar aqui
 
 def findWhite(matrix, startBlack):
+    """
+    Troba columna blanca despres de la columna negra i retorna la columna abans d'aquesta
+    >>> findBlack([[255,0,255],[255,255,0]])
+    1
+    """
     neededWhite = len(matrix)
     for col in range(startBlack, len(matrix[0])):
         whites = 0
