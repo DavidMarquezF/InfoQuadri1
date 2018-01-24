@@ -21,6 +21,7 @@ def displayTitle(title):
     print
 
 def menu():
+    displayTitle("MENU")
     print "[1] Afegir multa"
     print "[2] Eliminar multa"
     print "[3] Mostrar multes"
