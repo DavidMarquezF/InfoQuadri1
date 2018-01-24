@@ -57,7 +57,8 @@ def consultarMultes(fitxer):
     for linia in f:
         c=linia.split("/")
         comptador+=1
-        print str(comptador) +". Matricula: ",c[0],"    Multa: ",c[1]
+        print str(comptador) +". Matricula: ",c[0],"    Multa: ",c[1],
+    print
     f.close()
 
 def logIn():
@@ -87,6 +88,8 @@ def dicToString(dic):
 
 def writeToFile(file, listTxt):
     f = open(file,"w")
+    for linia in range(len(listTxt)-1):
+        listTxt[linia ]+="\n"
     f.writelines(listTxt)
     f.close()
 
@@ -161,6 +164,7 @@ def eliminaMatricula(fitxer):
     d=diccionari(fitxer)
     if d.has_key(matricula):
         del d[matricula]
+        print "Multa eliminada exitosament!\n"
     else:
         print "Matricula no registrada."
     return d
@@ -174,11 +178,10 @@ def selectOption(op, patr,multesFile):
         dic = diccionari(multesFile)
         af = afegirMulta(patr, dic)
         writeToFile(multesFile, dicToString(af))
-        print "Multa afegida exitosament!\n\n"
+        print "Multa afegida exitosament!\n"
     elif(op == 2):
         el = eliminaMatricula(multesFile)
         writeToFile(multesFile, dicToString(el))
-        print "Multa eliminada exitosament!\n\n"
     elif(op == 3):
         consultarMultes(multesFile)
         raw_input("Apreta Enter per tornar al menu...")
