@@ -18,8 +18,6 @@ def diccionari(fitxer):
 def chekejaMatricula(matricula):
     """
     retorna True si la matricula existeix, sino retorna False
-    :param matricula:
-    :return:
     """
     d=diccionari("multes.txt")
     if d.has_key(matricula):
@@ -27,6 +25,9 @@ def chekejaMatricula(matricula):
     return False
 
 def demanaMatricula():
+    """
+    retorna la matricula que s'ha demanat, iteria si no és correcte
+    """
 
     t=False
     while  not t:
@@ -41,6 +42,9 @@ def demanaMatricula():
 
 
 def eliminaMatricula(fitxer):
+    """
+    Retorna el diccionari del fitxer sense la matricula que es vol eliminar
+    """
     matricula=demanaMatricula()
     d=diccionari(fitxer)
     if d.has_key(matricula):
