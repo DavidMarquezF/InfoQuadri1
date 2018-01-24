@@ -37,12 +37,7 @@ def getMatriculaNumbers(matriculaImg, patronsImg, hasLetters = False):
             break
     return matriculaNumbers
 
-
-if(__name__ =="__main__"):
-    s = sys.argv[1:]
-    patrons = s[0]
-    matricula = s[1]
-
+def hasLettersInMat():
     while True:
         lettersInMat = raw_input("La matricula te lletres?(Y/N) ")
         if(lettersInMat == "y" or lettersInMat == "Y"):
@@ -52,6 +47,13 @@ if(__name__ =="__main__"):
             lettersInMat = False
             break
         print lettersInMat + " no es una resposta valida."
+
+
+if(__name__ =="__main__"):
+    s = sys.argv[1:]
+    patrons = s[0]
+    matricula = s[1]
+    lettersInMat = hasLettersInMat()
 
     if(lettersInMat):
         print "Les matricules amb lletres solen tenir 4 nombres"
