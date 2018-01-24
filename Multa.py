@@ -1,3 +1,8 @@
+from getpass import getpass
+
+Usuari = "Agent1"
+Password = "policia"
+
 def checkIfInt(number):
     """
     Chequeja si la string que es passa es un int
@@ -23,17 +28,16 @@ def consultarMultes(fitxer):
     while linia!="":
         c=linia.split("/")
         comptador+=1
-        print "num",comptador,"num matricula->",c[0],"diners a pagar->",c[1]
+        print comptador,". num matricula->",c[0],"diners a pagar->",c[1]
     f.close()
 
 def logIn():
-    us="Agent1"
-    pas="policia"
-    usuari=input("entri usuari: ")
-    password=input("entri contrasenya")
-    success=False
-    while usuari!=us and password!=pas:
-        success=False
-        usuari=input("entri usuari: ")
-        password=input("entri contrasenya")
+
+    usuari=input("Entri usuari: ")
+    password=getpass("Entri contrasenya: ")
+    while usuari!=Usuari and password !=Password:
+        print "Usuari o contrasenya no correctes"
+        usuari=input("Entri usuari: ")
+        password=getpass("Entri contrasenya: ")
+
     return True
