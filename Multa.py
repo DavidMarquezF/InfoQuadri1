@@ -62,6 +62,7 @@ def askNumberOption(question, numbers):
 
 #------------------Consulta Multes
 
+
 def consultarMultes(fitxer):
     """
     Mostra multes per pantalla
