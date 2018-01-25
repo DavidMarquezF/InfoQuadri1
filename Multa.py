@@ -4,7 +4,7 @@ from getpass import getpass
 import img2char, os.path, sys
 
 
-Usuari = "Agent1"
+Usuari = "agent1"
 Password = "policia"
 
 #--------------------Funcionalitat general
@@ -21,6 +21,9 @@ def displayTitle(title):
     print
 
 def menu():
+    """
+    Printeja el menu
+    """
     displayTitle("MENU")
     print "[1] Afegir multa"
     print "[2] Eliminar multa"
