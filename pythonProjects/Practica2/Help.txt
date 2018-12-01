@@ -1,0 +1,17 @@
+Aquesta carpeta conté els scripts:
+-Tasca1.py
+-Tasca2.py
+-Tasca3.py
+-mainLib.py
+-Principal.py
+-Penjat.py
+
+-Els fitxers Tasca1.py, Tasca2.py i Tasca3.py fan el que indica el seu nom: són els que s'ocupen de com funciona cada tasca.
+
+-mainLib.py és una llibreria comuna que s'utilitza per tenir-hi funcions que s'utilitzen varies vegades en diferents tasques
+o que han estat creats en un altre projecte (com checkifInt).
+
+-Principal.py és el script que fa el que es demana en la tasca 4. Hem posat aquest nom perquè és el script que s'ha de cridar
+des de la terminal per poder probar les tasques.
+
+-Penjat.py és el joc del penjat però més ben fet (no es poden repetir lletres, es mostra per la pantalla el dibuix del penjat,etc.)

@@ -1,0 +1,19 @@
+Els fitxer en aquest .tar són:
+
+-pinpuk.py
+-main_lib.py
+-calculateTeacher.py
+
+pinpuk.py:
+És el programa principal. Conté les funcions per demanar el pin, el puk, l'email i engegar el mobil
+
+main_lib.py:
+Llibreria que conté funcions utilitzades en tots els fitxers
+
+calculateTeacher.py:
+Llibreria que s'encarrega del professor de mates (toc personal)
+
+
+Per fer la estió de patró es fa a pinpuk.py. Hi ha la funció askPin() que s'encarrega de demanar el PIN, la funció askPuk() que s'encarrega de demanar el puk i la funció askForLogin que s'encarrega de demanar el login.
+
+Ferran Godoy i David Márquez
