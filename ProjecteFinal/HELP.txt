@@ -1,0 +1,6 @@
+Per fer anar el programa hi ha dos opcions. Per veure el total funcionament del programa (amb toc personal) s'ha de fer l'opció 2 i per mirar solament
+la comprobació d'imatges cal fer l'opció 1:
+
+1. Cridar fitxer img2char seguit del directori dels patrons amb el començament dels noms dels patrons i seguit del fitxer de la matricula
+
+2. Cridar Multa.py seguit del directori dels patrons amb el començament dels noms dels patrons i seguit de la base de dades on s'ha de guardar les multes
